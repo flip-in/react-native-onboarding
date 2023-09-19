@@ -7,6 +7,7 @@
 
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 // import type {PropsWithChildren} from 'react';
 import {
@@ -18,8 +19,6 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import AboutScreen from './src/screens/AboutScreen';
 import HomeScreen from './src/screens/HomeScreen';
 
@@ -27,7 +26,7 @@ import HomeScreen from './src/screens/HomeScreen';
 //   title: string;
 // }>;
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,10 +37,10 @@ function App(): JSX.Element {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="About" component={AboutScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={AboutScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
