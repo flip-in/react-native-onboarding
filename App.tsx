@@ -21,6 +21,7 @@ import {
 } from 'react-native';
 import AboutScreen from './src/screens/AboutScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import MapScreen from './src/screens/MapScreen';
 
 // type SectionProps = PropsWithChildren<{
 //   title: string;
@@ -40,6 +41,7 @@ function App(): JSX.Element {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Settings" component={AboutScreen} />
+        <Tab.Screen name="Map" component={MapScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
