@@ -22,6 +22,7 @@ import {
 import AboutScreen from './src/screens/AboutScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import MapScreen from './src/screens/MapScreen';
+import PointsListScreen from './src/screens/PointsListScreen';
 
 // type SectionProps = PropsWithChildren<{
 //   title: string;
@@ -39,8 +40,7 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={AboutScreen} />
+        <Tab.Screen name="Points" component={PointsListScreen} />
         <Tab.Screen name="Map" component={MapScreen} />
       </Tab.Navigator>
     </NavigationContainer>

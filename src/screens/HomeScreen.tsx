@@ -1,20 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 type Props = {
   navigation: any;
 };
 
-const HomeScreen: React.FC<Props> = ({navigation}) => {
+const HomeScreen: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to my app!</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('About')}>
-        <Text style={styles.description}>
-          This is a generic Home Screen component. Click here to learn more
-          about the app.
-        </Text>
-      </TouchableOpacity>
+      <Text style={styles.description}>
+        This is a generic Home Screen component.
+      </Text>
     </View>
   );
 };
