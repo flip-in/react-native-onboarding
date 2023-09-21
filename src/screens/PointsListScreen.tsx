@@ -46,7 +46,7 @@ export default function PointsListScreen({navigation}: Props) {
           </Text>
         </View>
       ))}
-      <TouchableOpacity onPress={() => navigation.navigate('MapScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Map')}>
         <Text>View Map</Text>
       </TouchableOpacity>
     </View>
