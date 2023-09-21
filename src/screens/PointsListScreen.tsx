@@ -1,7 +1,19 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {NavigationProp} from '@react-navigation/native';
 
-const points = [
+interface Point {
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface Props {
+  navigation: NavigationProp<any>;
+}
+
+const points: Point[] = [
   {
     name: 'Point A',
     description: 'This is the first point',
@@ -22,7 +34,7 @@ const points = [
   },
 ];
 
-export default function PointsListScreen() {
+export default function PointsListScreen({navigation}: Props) {
   return (
     <View style={styles.container}>
       {points.map(point => (
@@ -34,6 +46,9 @@ export default function PointsListScreen() {
           </Text>
         </View>
       ))}
+      <TouchableOpacity onPress={() => navigation.navigate('MapScreen')}>
+        <Text>View Map</Text>
+      </TouchableOpacity>
     </View>
   );
 }
