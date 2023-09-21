@@ -1,69 +1,70 @@
-import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import MapScreen from './MapScreen';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import * as React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-type Point = {
-  id: number;
-  name: string;
-  latitude: number;
-  longitude: number;
-};
+const points = [
+  {
+    name: 'Point A',
+    description: 'This is the first point',
+    latitude: 37.7749,
+    longitude: -122.4194,
+  },
+  {
+    name: 'Point B',
+    description: 'This is the second point',
+    latitude: 37.773972,
+    longitude: -122.431297,
+  },
+  {
+    name: 'Point C',
+    description: 'This is the third point',
+    latitude: 37.7727,
+    longitude: -122.4353,
+  },
+];
 
-type Props = {
-  points?: Point[];
-};
-
-const PointsListScreen: React.FC<Props> = ({
-  points = [
-    {id: 1, name: 'Point 1', latitude: 37.78825, longitude: -122.4324},
-    {id: 2, name: 'Point 2', latitude: 37.78825, longitude: -122.4324},
-    {id: 3, name: 'Point 3', latitude: 37.78825, longitude: -122.4324},
-  ],
-}) => {
-  const navigation = useNavigation();
-
-  const handlePointPress = (point: Point) => {
-    navigation.navigate('MapScreen', {point});
-  };
-
+export default function PointsListScreen() {
   return (
     <View style={styles.container}>
       {points.map(point => (
-        <TouchableOpacity
-          key={point.id}
-          style={styles.point}
-          onPress={() => handlePointPress(point)}>
-          <Text style={styles.pointName}>{point.name}</Text>
-          <Text style={styles.pointCoordinates}>
-            {point.latitude}, {point.longitude}
+        <View key={point.name} style={styles.card}>
+          <Text style={styles.title}>{point.name}</Text>
+          <Text style={styles.description}>{point.description}</Text>
+          <Text style={styles.coordinates}>
+            ({point.latitude}, {point.longitude})
           </Text>
-        </TouchableOpacity>
+        </View>
       ))}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    padding: 20,
   },
-  point: {
-    backgroundColor: '#fff',
+  card: {
+    backgroundColor: 'white',
     borderRadius: 8,
-    padding: 16,
-    marginBottom: 16,
+    padding: 10,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  pointName: {
-    fontSize: 18,
+  title: {
+    fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 8,
+    marginBottom: 5,
   },
-  pointCoordinates: {
+  description: {
     fontSize: 16,
+    marginBottom: 5,
+  },
+  coordinates: {
+    fontSize: 14,
+    color: '#888',
   },
 });
-
-export default PointsListScreen;
