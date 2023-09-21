@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 
 interface Point {
@@ -39,23 +39,27 @@ export default function PointsListScreen({navigation}: Props) {
     navigation.navigate('Map', {selectedPoint: point});
   };
 
+  const renderPointItem = ({item}: {item: Point}) => (
+    <TouchableOpacity
+      key={item.name}
+      style={styles.card}
+      onPress={() => handlePointPress(item)}>
+      <Text style={styles.title}>{item.name}</Text>
+      <Text style={styles.description}>{item.description}</Text>
+      <Text style={styles.coordinates}>
+        ({item.latitude}, {item.longitude})
+      </Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={styles.container}>
-      {points.map(point => (
-        <TouchableOpacity
-          key={point.name}
-          style={styles.card}
-          onPress={() => handlePointPress(point)}>
-          <Text style={styles.title}>{point.name}</Text>
-          <Text style={styles.description}>{point.description}</Text>
-          <Text style={styles.coordinates}>
-            ({point.latitude}, {point.longitude})
-          </Text>
-        </TouchableOpacity>
-      ))}
-      <TouchableOpacity onPress={() => navigation.navigate('Map')}>
-        <Text>View Map</Text>
-      </TouchableOpacity>
+      <FlatList
+        data={points}
+        renderItem={renderPointItem}
+        keyExtractor={(item: Point) => item.name}
+        // ListFooterComponent={<Text>View Map</Text>}
+      />
     </View>
   );
 }

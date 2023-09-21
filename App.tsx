@@ -3,15 +3,15 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import PointsListScreen from './src/screens/PointsListScreen';
 import MapScreen from './src/screens/MapScreen';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+// import {
+//   // SafeAreaView,
+//   // ScrollView,
+//   // StatusBar,
+//   // StyleSheet,
+//   // Text,
+//   // useColorScheme,
+//   // View,
+// } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
