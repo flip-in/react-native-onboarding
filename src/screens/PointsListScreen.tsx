@@ -35,16 +35,23 @@ const points: Point[] = [
 ];
 
 export default function PointsListScreen({navigation}: Props) {
+  const handlePointPress = (point: Point) => {
+    navigation.navigate('Map', {selectedPoint: point});
+  };
+
   return (
     <View style={styles.container}>
       {points.map(point => (
-        <View key={point.name} style={styles.card}>
+        <TouchableOpacity
+          key={point.name}
+          style={styles.card}
+          onPress={() => handlePointPress(point)}>
           <Text style={styles.title}>{point.name}</Text>
           <Text style={styles.description}>{point.description}</Text>
           <Text style={styles.coordinates}>
             ({point.latitude}, {point.longitude})
           </Text>
-        </View>
+        </TouchableOpacity>
       ))}
       <TouchableOpacity onPress={() => navigation.navigate('Map')}>
         <Text>View Map</Text>

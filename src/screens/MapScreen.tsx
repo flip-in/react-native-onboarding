@@ -4,7 +4,7 @@ import MapView, {Marker} from 'react-native-maps';
 
 type Props = {};
 
-const MapScreen: React.FC<Props> = () => {
+export default function MapScreen(props: Props) {
   return (
     <View style={styles.container}>
       <MapView
@@ -23,7 +23,7 @@ const MapScreen: React.FC<Props> = () => {
       </MapView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -35,5 +35,3 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
 });
-
-export default MapScreen;
