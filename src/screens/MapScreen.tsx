@@ -2,9 +2,24 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 
-type Props = {};
+interface Point {
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+}
+
+type Props = {
+  route: {
+    params: {
+      selectedPoint: Point;
+    };
+  };
+};
 
 export default function MapScreen(props: Props) {
+  const {latitude, longitude} = props.route.params.selectedPoint;
+
   return (
     <View style={styles.container}>
       <MapView
@@ -16,9 +31,9 @@ export default function MapScreen(props: Props) {
           longitudeDelta: 0.0421,
         }}>
         <Marker
-          coordinate={{latitude: 37.78825, longitude: -122.4324}}
-          title="Marker"
-          description="This is a marker"
+          coordinate={{latitude, longitude}}
+          title={props.route.params.selectedPoint.name}
+          description={props.route.params.selectedPoint.description}
         />
       </MapView>
     </View>
