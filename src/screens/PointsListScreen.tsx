@@ -54,6 +54,13 @@ export default function PointsListScreen({navigation}: Props) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('Map')}>
+          <Text style={styles.buttonText}>View Map</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={points}
         renderItem={renderPointItem}
@@ -92,5 +99,19 @@ const styles = StyleSheet.create({
   coordinates: {
     fontSize: 14,
     color: '#888',
+  },
+  buttonContainer: {
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    borderRadius: 8,
+    padding: 10,
+    marginVertical: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
