@@ -1,6 +1,8 @@
 import * as React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View, FlatList} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
+import {useQuery} from '@tanstack/react-query';
+import {getPreferredPoints} from '../../lib/fakeApi';
 
 interface Point {
   name: string;
@@ -13,28 +15,9 @@ interface Props {
   navigation: NavigationProp<any>;
 }
 
-const points: Point[] = [
-  {
-    name: 'Point A',
-    description: 'This is the first point',
-    latitude: 37.7749,
-    longitude: -122.4194,
-  },
-  {
-    name: 'Point B',
-    description: 'This is the second point',
-    latitude: 37.773972,
-    longitude: -122.431297,
-  },
-  {
-    name: 'Point C',
-    description: 'This is the third point',
-    latitude: 37.7727,
-    longitude: -122.4353,
-  },
-];
-
 export default function PointsListScreen({navigation}: Props) {
+  const {data: points} = useQuery(['points'], async () => getPreferredPoints());
+
   const handlePointPress = (point: Point) => {
     navigation.navigate('Map', {selectedPoint: point});
   };

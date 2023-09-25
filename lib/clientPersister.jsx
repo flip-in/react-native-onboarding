@@ -4,7 +4,7 @@ import {QueryClient} from '@tanstack/react-query';
 
 const storage = new MMKV();
 
-const clientStorage = {
+export const clientStorage = {
   setItem: (key, value) => {
     storage.set(key, value);
   },
