@@ -1,3 +1,11 @@
+<img width="406" alt="image" src="https://github.com/flip-in/react-native-onboarding/assets/32665615/06f09c5f-67f5-4459-9aff-e909274facca">
+
+<img width="406" alt="image" src="https://github.com/flip-in/react-native-onboarding/assets/32665615/4c917021-689b-4c32-ab7b-a02f91e4e649">
+
+<img width="351" alt="image" src="https://github.com/flip-in/react-native-onboarding/assets/32665615/06f1c24a-de8c-40e2-86f9-2b074cc4626e">
+
+
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
