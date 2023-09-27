@@ -40,7 +40,9 @@ export default function PointsListScreen({navigation}: Props) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate('Map')}>
+          onPress={() => {
+            navigation.navigate('Map');
+          }}>
           <Text style={styles.buttonText}>View Map</Text>
         </TouchableOpacity>
       </View>

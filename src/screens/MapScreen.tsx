@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import {View, StyleSheet, Text} from 'react-native';
+import MapView, {Marker, Callout} from 'react-native-maps';
 import {
   addPreferredPoint,
   getPreferredPoints,
@@ -17,6 +17,7 @@ interface Point {
 }
 
 export default function MapScreen() {
+  // let markerRef = React.useRef(null);
   const {data: preferredPoints} = useQuery(['points'], async () =>
     getPreferredPoints(),
   );
@@ -27,8 +28,14 @@ export default function MapScreen() {
       ) ?? false
     );
   };
+  // React.useEffect(() => {
+  //   if (markerRef.current) {
+  //     markerRef.current.showCallout();
+  //   }
+  // });
 
   const handlePress = async e => {
+    // console.log('press');
     const updatePoint = isPointPreferred(e)
       ? removePreferredPoint
       : addPreferredPoint;
@@ -40,22 +47,27 @@ export default function MapScreen() {
       <MapView style={styles.map} initialRegion={region}>
         {points.map((point, index) => (
           <Marker
+            // ref={markerRef}/
             key={index}
             coordinate={{latitude: point.latitude, longitude: point.longitude}}
             title={point.name}
             description={point.description}>
-            <View style={{backgroundColor: 'red', padding: 1}}>
+            <Callout style={styles.callout} onPress={() => handlePress(point)}>
               <Text>{point.name}</Text>
-              <Button
-                onPress={() => handlePress(point)}
-                title={isPointPreferred(point) ? 'remove' : 'add'}
-              />
-            </View>
+              <Text>{point.description}</Text>
+              <Text
+                style={
+                  isPointPreferred(point)
+                    ? styles.removeButton
+                    : styles.addButton
+                }>
+                {isPointPreferred(point) ? 'remove preferred' : 'add preferred'}
+              </Text>
+            </Callout>
           </Marker>
         ))}
       </MapView>
     </View>
-    //123456789william printhello world if then ok
   );
 }
 
@@ -67,6 +79,24 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
+  },
+  addButton: {
+    backgroundColor: 'green',
+    color: 'white',
+    padding: 5,
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  removeButton: {
+    backgroundColor: 'red',
+    color: 'white',
+    padding: 5,
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  callout: {
+    padding: 10,
+    height: 120,
   },
 });
 
