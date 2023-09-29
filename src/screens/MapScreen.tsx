@@ -24,7 +24,8 @@ export default function MapScreen() {
   const isPointPreferred = (point: Point): boolean => {
     return (
       preferredPoints?.some(
-        preferredPoint => preferredPoint?.name === point?.name,
+        (preferredPoint: {name: string}) =>
+          preferredPoint?.name === point?.name,
       ) ?? false
     );
   };
@@ -34,7 +35,7 @@ export default function MapScreen() {
   //   }
   // });
 
-  const handlePress = async e => {
+  const handlePress = async (e: Point) => {
     // console.log('press');
     const updatePoint = isPointPreferred(e)
       ? removePreferredPoint
